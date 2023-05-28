@@ -1,15 +1,15 @@
 // import { useEffect } from 'react';
 
-// const HomePage = () => {
-//   useEffect(
+const HomePage = () => {
+  //   useEffect(
+  // console.log('111')
+  //   )
 
-//   )
+  return (
+    <>
+      <div>Home</div>
+    </>
+  );
+};
 
-//   return (
-//     <>
-//       <div>Home</div>
-//     </>
-//   );
-// };
-
-// export default HomePage;
+export default HomePage;

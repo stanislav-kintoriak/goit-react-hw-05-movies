@@ -1,17 +1,21 @@
-import { useState, useEffect } from 'react';
+// import { useState } from 'react';
+// import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const MoviesPage = () => {
-  [movies, setMovies] = useState([{ id: 1, name: movie_1 }]);
+  const movies = [{ id: 1, name: 'movie_1' }];
 
-  useEffect(
+  //  const  [movies, setMovies] = useState([]);
 
-  )
+  //   useEffect(
+
+  //   )
 
   return (
     <div>
       <h3>Movies</h3>
       <ul>
-      {movies &&
+        {movies &&
           movies.map(movie => {
             return (
               <li key={movie.id}>
