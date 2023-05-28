@@ -1,9 +1,10 @@
 // import { useEffect } from 'react';
 
 const HomePage = () => {
-  //   useEffect(
-  // console.log('111')
-  //   )
+
+//   useEffect(() => {}
+//   ,[]
+// )
 
   return (
     <>

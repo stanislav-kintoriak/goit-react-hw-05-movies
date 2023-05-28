@@ -7,9 +7,10 @@ const MoviesPage = () => {
 
   //  const  [movies, setMovies] = useState([]);
 
-  //   useEffect(
 
-  //   )
+//   useEffect(() => {}
+//   ,[]
+// )
 
   return (
     <div>
