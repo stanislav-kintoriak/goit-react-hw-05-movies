@@ -34,3 +34,88 @@ export const getMoviesByQuery = async (query,pageNumber) => {
 
     return data;
 }
+
+// Функція, яка повертає дані про фільм
+
+export const getMoviesInfo = moviesArr => {
+  return moviesArr.map(movie => {
+    const movieInfo = {
+      title: movie.title ? movie.title : movie.name,
+      w300imgUrl: movie.poster_path
+        ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+        : DEFAULT_IMAGE,
+      w500imgUrl: movie.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+        : DEFAULT_IMAGE,
+      year: movie.release_date
+        ? movie.release_date.slice(0, 4)
+        : movie?.first_air_date?.slice(0, 4) || '',
+      id: movie.id,
+    };
+    return movieInfo;
+  });
+};
+
+
+
+// Функція, яка повертає дані про фільм отримуючи id
+export const getMovieById = async id => {
+  const data = await axios(
+    `${API_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`
+  );
+
+  return data;
+};
+
+
+// Функція, яка повертає дані про акторів отримуючи id фільму
+export const getCastInfo = async id => {
+  const data = await axios(
+    `${API_URL}/movie/${id}/credits?api_key=${API_KEY}`
+  );
+
+  return data;
+};
+
+
+
+export const getActorInfoData = actorsArr => {
+  return actorsArr.map(actor => {
+    const actorInfo = {
+      name: actor.name ? actor.name : actor.original_name,
+      w300imgUrl: actor.poster_path
+        ? `https://image.tmdb.org/t/p/w300${actor.profile_path}`
+        : DEFAULT_IMAGE,
+      w500imgUrl: actor.profile_path
+        ? `https://image.tmdb.org/t/p/w500${actor.profile_path}`
+        : DEFAULT_IMAGE,
+      character: actor.character,
+      id: actor.id,
+    };
+    return actorInfo;
+  });
+};
+
+
+// Функція, яка повертає дані про відгуки отримуючи id фільму
+
+export const getReviews = async id => {
+  const data = await axios(
+    `${API_URL}/movie/${id}/reviews?api_key=${API_KEY}`
+  );
+  return data;
+};
+
+
+
+
+export const getReviewsInfo = reviewsArr => {
+  return reviewsArr.map(review => {
+    const reviewInfo = {
+      author: review.author,
+      content: review.content,
+      id: review.id,
+    };
+    return reviewInfo;
+  });
+};
