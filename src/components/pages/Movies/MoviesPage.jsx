@@ -1,6 +1,15 @@
-// import { useState } from 'react';
-// import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useMemo, useState } from 'react';
+import Notiflix from 'notiflix';
+
+
+import { getMoviesByQuery, getMoviesInfo } from '../../../api/api';
+
+import { useLocation, useSearchParams } from 'react-router-dom';
+
+import Loader from '../../Loader/Loader';
+
+import ButtonLoadMore from '../../LoadMore/LoadMoreButton';
+
 
 const MoviesPage = () => {
   const movies = [{ id: 1, name: 'movie_1' }];
