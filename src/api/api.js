@@ -37,7 +37,7 @@ export const getMoviesByQuery = async (query,pageNumber) => {
 
 // Функція, яка повертає дані про фільм
 
-export const getMoviesInfo = moviesArr => {
+export const getMoviesDetails = moviesArr => {
   return moviesArr.map(movie => {
     const movieInfo = {
       title: movie.title ? movie.title : movie.name,
@@ -118,4 +118,35 @@ export const getReviewsInfo = reviewsArr => {
     };
     return reviewInfo;
   });
+};
+
+
+export const getMovieDetails = movie => {
+  let genres = movie.genres.map(elem => elem.name);
+  let cutGenres;
+  if (genres.length === 0) {
+    cutGenres = 'Other';
+  } else if (genres.length <= 2) {
+    cutGenres = genres.join(', ');
+  } else {
+    cutGenres = `${genres.slice(0, 2).join(', ')}, Other`;
+  }
+  return {
+    title: movie.title ? movie.title : movie.name, //назва
+    titleOriginal: movie.original_title, // оригінальна назва
+    popularity: movie.popularity, //популярність
+    vote: movie.vote_average, // середній рейтинг
+    votes: movie.vote_count, // кількість голосів
+    w300imgUrl: movie.poster_path
+      ? `https://image.tmdb.org/t/p/w300${movie.poster_path}`
+      : DEFAULT_IMAGE, // постер, або дефолтна картинка за відсутності постера
+    w500imgUrl: movie.poster_path
+      ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+      : DEFAULT_IMAGE, // постер, або дефолтна картинка за відсутності постера
+    genres: cutGenres, // жанри
+    about: movie.overview,
+    year: movie.release_date
+      ? movie.release_date.slice(0, 4)
+      : movie?.first_air_date?.slice(0, 4) || '',
+  };
 };

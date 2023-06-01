@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 const { useLocation, Link } = require('react-router-dom');
 
-const PopularMoviesList = ({ movies }) => {
+const MoviesList = ({ movies }) => {
   return (
     <ul>
       {movies.map(movie => {
@@ -19,7 +19,7 @@ const PopularMoviesList = ({ movies }) => {
   );
 };
 
-PopularMoviesList.propTypes = {
+MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -31,4 +31,4 @@ PopularMoviesList.propTypes = {
   ).isRequired,
 };
 
-export default PopularMoviesList;
+export default MoviesList;

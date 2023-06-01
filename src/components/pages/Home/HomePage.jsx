@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
-import PopularMoviesList from '../../PopularMoviesList/PopularMoviesList';
-import { getMoviesInfo, getPopularMovies } from '../../../api/api'
+import MoviesList from '../../PopularMoviesList/MoviesList';
+import { getMoviesDetails, getPopularMovies } from '../../../api/api'
 import ButtonLoadMore from '../../LoadMore/LoadMoreButton';
 import { Title } from './HomePage.styled';
 
@@ -25,7 +25,7 @@ const HomePage = () => {
 
         setMovies(prevState => [
           ...prevState,
-          ...getMoviesInfo(response.data.results),
+          ...getMoviesDetails(response.data.results),
         ]);
       })
       .catch(e => console.error(e))
@@ -46,7 +46,7 @@ const HomePage = () => {
 
           {movies.length && (
             <>
-              <PopularMoviesList movies={movies} location={homeLocation} />
+              <MoviesList movies={movies} location={homeLocation} />
               {page < totalPages && <ButtonLoadMore onLoadMore={onLoadMore} />}
             </>
           )}
