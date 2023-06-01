@@ -1,13 +1,42 @@
 import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getReviews, getReviewsInfo } from '../../api/api';
+import ReviewsListTotal from '../Reviews/ReviewList/ReviewsList';
+
+
+import Loader from 'components/Loader/Loader';
+
 
 const Reviews = () => {
   const { movieId } = useParams();
+  const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
+
+  useEffect(() => {
+    setIsloading(true);
+
+    getReviews(movieId)
+      .then(response => {
+        if (response.status !== 200) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        setReviews(getReviewsInfo(response.data.results));
+      })
+      .catch(e => console.error(e))
+      .finally(() => setIsloading(false));
+  }, [movieId]);
+
 
   return (
     <div>
-      <h3>Author: {movieId}</h3>
-      <p>Text</p>
-    </div>
+    {isLoading && <Loader />}
+
+    {reviews.length ? (
+      <ReviewsListTotal reviews={reviews} />
+    ) : (
+      <h3>There is no review for this movie</h3>
+    )}
+  </div>
   );
 };
 

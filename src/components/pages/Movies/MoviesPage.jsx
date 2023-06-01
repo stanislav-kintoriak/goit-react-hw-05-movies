@@ -96,7 +96,6 @@ Search
         {page < totalPages && <ButtonLoadMore onLoadMore={onLoadMore} />}
       </>
     )}
-    {/* {error && query && !isLoading && <PlaceholderSerch />} */}
   </>
   );
 };
