@@ -2,10 +2,11 @@ import PropTypes from 'prop-types';
 const { useLocation, Link } = require('react-router-dom');
 
 const MoviesList = ({ movies }) => {
+          const location = useLocation();
   return (
     <ul>
       {movies.map(movie => {
-        const location = useLocation();
+
 
         return (
           <Link to={`/movies/${movie.id}`} state={{ from: location }}>
