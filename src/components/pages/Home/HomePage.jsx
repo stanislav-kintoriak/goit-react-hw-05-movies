@@ -8,7 +8,7 @@ import { Title } from './HomePage.styled';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [isLoading, setIsloading] = useState(false);
   // const [totalPages, setTotalPages] = useState(0);
   const homeLocation = useLocation();
@@ -16,7 +16,7 @@ const HomePage = () => {
   useEffect(() => {
     setIsloading(true);
 
-    getPopularMovies(page)
+    getPopularMovies()
       .then(response => {
         if (response.status !== 200) {
           throw new Error(`Error: ${response.status}`);
@@ -30,7 +30,7 @@ const HomePage = () => {
       })
       .catch(e => console.error(e))
       .finally(() => setIsloading(false));
-  }, [page]);
+  }, []);
 
 
   // const onLoadMore = () => {
