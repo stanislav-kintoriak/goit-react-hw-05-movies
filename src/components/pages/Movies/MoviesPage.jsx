@@ -3,7 +3,7 @@ import Notiflix from 'notiflix';
 import { getMoviesByQuery, getMoviesDetails } from '../../../api/api';
 import { useSearchParams } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
-import ButtonLoadMore from '../../LoadMore/LoadMoreButton';
+// import ButtonLoadMore from '../../LoadMore/LoadMoreButton';
 import MoviesList from '../../PopularMoviesList/MoviesList';
 import {
   Form,
@@ -18,7 +18,7 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [totalPages, settTotalPages] = useState(0);
+  // const [totalPages, settTotalPages] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const [error, setError] = useState(false);
 
@@ -59,7 +59,7 @@ const MoviesPage = () => {
           );
         }
         setError(false);
-        settTotalPages(response.data.total_pages);
+        // settTotalPages(response.data.total_pages);
         setTotalResults(response.data.total_results);
 
 
@@ -72,11 +72,11 @@ const MoviesPage = () => {
       .finally(() => setIsloading(false));
   }, [query, page, searchParams]);
 
-  const onLoadMore = () => {
-    const previoudPage = searchParams.get('page') ?? 1;
-    const query = searchParams.get('query');
-    setSearchParams({ query, page: Number(previoudPage) + 1 });
-  };
+  // const onLoadMore = () => {
+  //   const previoudPage = searchParams.get('page') ?? 1;
+  //   const query = searchParams.get('query');
+  //   setSearchParams({ query, page: Number(previoudPage) + 1 });
+  // };
 
   return (
     <>
@@ -93,7 +93,7 @@ Search
     {!error && query && totalResults && (
       <>
         <MoviesList movies={movies} />
-        {page < totalPages && <ButtonLoadMore onLoadMore={onLoadMore} />}
+        {/* {page < totalPages && <ButtonLoadMore onLoadMore={onLoadMore} />} */}
       </>
     )}
   </>

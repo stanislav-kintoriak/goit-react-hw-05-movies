@@ -3,14 +3,14 @@ import { useLocation } from 'react-router-dom';
 import Loader from '../../Loader/Loader';
 import MoviesList from '../../PopularMoviesList/MoviesList';
 import { getMoviesDetails, getPopularMovies } from '../../../api/api'
-import ButtonLoadMore from '../../LoadMore/LoadMoreButton';
+// import ButtonLoadMore from '../../LoadMore/LoadMoreButton';
 import { Title } from './HomePage.styled';
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsloading] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
+  // const [totalPages, setTotalPages] = useState(0);
   const homeLocation = useLocation();
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const HomePage = () => {
         if (response.status !== 200) {
           throw new Error(`Error: ${response.status}`);
         }
-        setTotalPages(response.data.total_pages);
+        // setTotalPages(response.data.total_pages);
 
         setMovies(prevState => [
           ...prevState,
@@ -33,9 +33,9 @@ const HomePage = () => {
   }, [page]);
 
 
-  const onLoadMore = () => {
-    setPage(prevState => prevState + 1);
-  };
+  // const onLoadMore = () => {
+  //   setPage(prevState => prevState + 1);
+  // };
 
   return (
     <>
@@ -47,7 +47,7 @@ const HomePage = () => {
           {movies.length && (
             <>
               <MoviesList movies={movies} location={homeLocation} />
-              {page < totalPages && <ButtonLoadMore onLoadMore={onLoadMore} />}
+              {/* {page < totalPages && <ButtonLoadMore onLoadMore={onLoadMore} />} */}
             </>
           )}
         </div>

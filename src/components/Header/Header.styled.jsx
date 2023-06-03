@@ -15,4 +15,10 @@ export const Header = styled.header`
 export const NavLinkBtns = styled(NavLink)`
   display: inline-block;
   padding: 25px 15px 25px 15px;
+  text-decoration: none;
+  color: green;
+  
+  
+  &.active{
+      color:red;
 `;
